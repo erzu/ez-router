@@ -7,8 +7,11 @@ Rails 风格的路由。
 在 app.js 中：
 
 ```js
-require('@ali/snails-router')(app, function() {
+var router = require('@ali/router')
+var homepage = require('./routes/homepage')
 
+
+router(app, function(app) {
   namespace('admin', function() {
     resources('creations')
     resources('templets')
@@ -16,6 +19,8 @@ require('@ali/snails-router')(app, function() {
 
   resources('templets')
   resources('users')
+
+  app.get('/about', homapage.about)
 })
 ```
 
