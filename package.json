@@ -1,0 +1,23 @@
+{
+  "name": "@ali/router",
+  "description": "A rails like router for express 3",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.alibaba-inc.com:central/snails-router.git"
+  },
+  "publishConfig": {
+    "registry": "http://registry.npm.alibaba-inc.com"
+  },
+  "dependencies": {
+    "@ali/belt": "~0.1.2"
+  },
+  "devDependencies": {
+    "expect.js": "~0.3.1",
+    "express": "~3.4.8",
+    "mocha": "~1.21.4"
+  },
+  "scripts": {
+    "test": "mocha test/*.js"
+  }
+}
