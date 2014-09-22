@@ -53,7 +53,7 @@ module.exports = function(router, opts, fn) {
 
     var filters = route.beforeFilter
 
-    function wire(method, mpath, handler) {
+    function wire(verb, mpath, handler) {
       var args = [mpath]
 
       if (!(handler in route)) return
@@ -68,18 +68,18 @@ module.exports = function(router, opts, fn) {
       }
 
       args.push(route[handler])
-      router[method].apply(router, args)
+      router[verb].apply(router, args)
     }
 
     function iterate(entry) {
-      var method = entry[0]
+      var verb = entry[0]
       var mpath = entry[1]
       var handler = entry[2]
       var parts = _scopes.concat(resource)
 
       if (mpath != '/') parts.push(mpath.slice(1))
 
-      wire(method, '/' + parts.join('/') + '.:format?', handler)
+      wire(verb, '/' + parts.join('/') + '.:format?', handler)
     }
 
     _collections.forEach(iterate)
@@ -89,15 +89,15 @@ module.exports = function(router, opts, fn) {
     _members = null
   }
 
-  function member(method, handlers) {
+  function member(verb, handlers) {
     handlers.split(' ').forEach(function(handler) {
-      _members.push([method, '/:id/' + handler, handler])
+      _members.push([verb, '/:id/' + handler, handler])
     })
   }
 
-  function collection(method, handlers) {
+  function collection(verb, handlers) {
     handlers.split(' ').forEach(function(handler) {
-      _collections.push([method, '/' + handler, handler])
+      _collections.push([verb, '/' + handler, handler])
     })
   }
 
