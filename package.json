@@ -1,6 +1,6 @@
 {
   "name": "ez-router",
-  "description": "A rails like router for express 3",
+  "description": "A rails like router for express",
   "version": "0.1.0",
   "repository": {
     "type": "git",
