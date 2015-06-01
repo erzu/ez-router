@@ -1,7 +1,19 @@
 'use strict';
 
 var path = require('path')
-var _ = require('@ali/belt')
+
+
+function singularize(str) {
+  if (/ies/.test(str)) {
+    return str.replace(/ies$/, 'y')
+  }
+  else if (/[xs]es$/.test(str)) {
+    return str.replace(/[xs]es$/, 's')
+  }
+  else {
+    return str.replace(/s$/, '')
+  }
+}
 
 
 module.exports = function(router, opts, fn) {
@@ -17,7 +29,7 @@ module.exports = function(router, opts, fn) {
   function _require(name) {
     var args = [process.cwd(), opts.routes].concat(_scopes)
 
-    args.push(_.singularize(name))
+    args.push(singularize(name))
 
     var fpath = path.resolve.apply(path, args)
     var rpath = path.relative(__dirname, fpath)
